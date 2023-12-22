@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommandArguments>unpack-sample file1.ico</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>unpack "C:\Users\dogar\source\repos\DiIconTool-Project\DiIconTool\x64\Debug\SampleIconFile.ico"</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

@@ -7,7 +7,7 @@
 enum class Command
 {
 	None,
-	UnpackSample,
+	DumpSample,
 	UnpackFile,
 	PackFile
 };
@@ -42,7 +42,7 @@ private :
 
 	[[noreturn]] void processCommandLineArguments(int argc, char* argv[]);
 
-	ErrorCodes performUnpackSample();
+	ErrorCodes performDumpSample();
 	ErrorCodes performUnpackFile();
 	ErrorCodes performPackFile();
 
