@@ -2,6 +2,8 @@
 Icon files creating/unpacking tool.
 Created using DiLib : https://github.com/JohnDBV/DiLib
 
+Version : 0.1.0
+
 # Build instructions : 
 
 1. Clone the repo(DiLib will already be added as a project dependency)
