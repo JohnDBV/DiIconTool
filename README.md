@@ -27,6 +27,7 @@ A new file will appear, and no output will be displayed (yet) :
 2. Let's unpack the icon file, to get access to the "inside images" using : DiIconTool unpack SampleIconPngFormat.ico
 
 The output is : 
+
 ![image](https://github.com/JohnDBV/DiIconTool/assets/36071862/878be642-96ec-4cbf-b738-c3d87a414e36)
 
 A few more files will appear as a result : 
@@ -36,6 +37,7 @@ A few more files will appear as a result :
 DiIconTool pack NewIconFileWithThreeImages.ico image1.png image2.png image3.png
 
 The output is : 
+
 ![image](https://github.com/JohnDBV/DiIconTool/assets/36071862/16905a1a-a3b4-4b2a-9183-932ca2364e9e)
 
 As a result, the "NewIconFileWithThreeImages.ico" file is also generated, as we can see below :
