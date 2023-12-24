@@ -2,7 +2,7 @@
 Icon files creating/unpacking tool.
 Created using DiLib : https://github.com/JohnDBV/DiLib
 
-Version : 0.2.0
+Version : 1.0.0
 
 # Build instructions : 
 
