@@ -1,6 +1,7 @@
 #include "CommandLineArguments.h"
 #include <iostream>
 #include "DiLib/DiIconFile.h"
+#include "SampleIconFilePng.h"
 
 CommandLineArguments::CommandLineArguments(int argc, char* argv[])
 {
@@ -15,7 +16,7 @@ CommandLineArguments::~CommandLineArguments()
 void CommandLineArguments::displayHelp()
 {
 	std::cout << "Usage :" << std::endl
-		<< argv0 << " [/h] [--help] <create-sample> (it will dump some sample pictures on disk)" << std::endl
+		<< argv0 << " [/h] [--help] <create-sample> (it will dump a sample icon file on disk)" << std::endl
 		<< argv0 << " [/h] [--help] <unpack> <iconFileName.ico>" << std::endl
 		<< argv0 << " [/h] [--help] <pack> <destinationIconFileName.ico> <imageFile1.png|bmp> [imageFile2.png|bmp] ... ";
 }
@@ -113,7 +114,7 @@ void CommandLineArguments::processCommandLineArguments(int argc, char* argv[])
 			{
 				//search for the command first
 
-				if (std::string(argv[i]) == "unpack-sample")
+				if (std::string(argv[i]) == "create-sample")
 				{//use the current app path as a reference to unpack the pictures in the same directory
 					command = Command::DumpSample;
 					srcFiles.push_back(argv[0]);
@@ -155,8 +156,32 @@ void CommandLineArguments::processCommandLineArguments(int argc, char* argv[])
 
 ErrorCodes CommandLineArguments::performDumpSample()
 {
-	std::cout << "Not available in this version !";
-	return ErrorCodes::UnknownError;
+	//We need a DiBinaryFile and some DiFileData class filled with data.
+
+	//1. Create the binary file
+	di::file::DiBinaryFile binaryFile{ "SampleIconPngFormat.ico" }; //the file may not exist, if so it will not be automatically-read (as the behaviour of DiBinaryFile does)
+
+	//2. Create the FileData empty object
+	di::file::internal::DiFileData fileData;
+
+	//2.1 : Set the binary data length
+	fileData.binaryData.first = pngIconFileLength;
+
+	//2.2 : Copy the binary data of the resource here(for demo purposes)
+	// 
+	//2.2.1 : Create a "garbage filled" buffer of the proper size
+	std::unique_ptr<uint8_t[]> buff = std::make_unique<uint8_t[]>(pngIconFileLength);
+	
+	//2.2.2 : Copy all the resource's bytes on this buff
+	memcpy(buff.get(), pngIconFileData.data(), pngIconFileLength);
+	
+	////2.2.3 : Move the unique_ptr array ownership
+	fileData.binaryData.second = std::move(buff);
+
+	//3. Write the data
+	binaryFile.setFileContent(fileData);
+
+	return ErrorCodes::NoError;
 }
 
 ErrorCodes CommandLineArguments::performUnpackFile()
